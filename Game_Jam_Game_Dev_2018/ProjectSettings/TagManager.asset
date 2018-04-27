@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Obstacles
   - ReflectiveSurface
+  - Block
+  - IceSurface
+  - NormalSurface
+  - Wall
   layers:
   - Default
   - TransparentFX

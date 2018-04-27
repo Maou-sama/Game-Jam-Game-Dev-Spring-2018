@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 
     private static GameManager _instance;
+
     public static GameManager Instance
     {
         get
@@ -14,9 +15,6 @@ public class GameManager : MonoBehaviour {
             {
                 GameObject go = new GameObject("GameManager");
                 go.AddComponent<GameManager>();
-
-
-
             }
             return _instance;
         }
@@ -28,9 +26,6 @@ public class GameManager : MonoBehaviour {
     public float pXSpeed { get; set; }
     public bool PlayerSpotted { get; set; }
     public int pHealth { get; set; }
-   
-
-	
 
     void Awake()
     {

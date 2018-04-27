@@ -9,9 +9,9 @@ public class Player : MonoBehaviour
     Rigidbody2D myRigidbody;
     public float xSpeed = .4f;
     //public Transform firepoint;
-  //  public GameObject pProjectile;
-   // public int sliderPass;
-   // public Slider selfHealth;
+    //public GameObject pProjectile;
+    //public int sliderPass;
+    //public Slider selfHealth;
 
     // Use this for initialization
     void Start()
@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
 
         if (GameManager.Instance.pHealth == 0)
         {
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 
@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            myRigidbody.velocity = (movement * xSpeed) / 2;
+            myRigidbody.velocity /= 2;
         }
       //  if (Input.GetKey(KeyCode.Space))
         //{   //Creates a projectile object (from inspector specified prefab at an inspector specified location)
@@ -74,19 +74,5 @@ public class Player : MonoBehaviour
        /// }
 
     }
-
-    private void OnCollisionEnter2D(Collision2D CollisionInfo)
-    {
-        //if (CollisionInfo.gameObject.tag == "EnemyBullet")
-        //{
-            //References Global Player health to lower health every time player is hit while keeping value accessible to all other scripts
-          //  GameManager.Instance.pHealth = (GameManager.Instance.pHealth - 1);
-           // Debug.Log(GameManager.Instance.pHealth);
-            //sliderPass = GameManager.Instance.pHealth;
-
-
-        //}
-    }
-
 
 }
