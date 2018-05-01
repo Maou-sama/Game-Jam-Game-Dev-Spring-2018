@@ -72,10 +72,6 @@ public class LaserReflective : MonoBehaviour
         while (loopActive) {
             RaycastHit2D hit = Physics2D.Raycast(lastLaserPosition, laserDirection, Mathf.Infinity, layerToDetect);
 
-            /*if (hit.collider.tag == "Player")
-            {
-                hit.collider.gameObject.GetComponent<Movement>().Die();
-            }*/
             if (hit)
             {
                 if (hit.collider.tag == "ReflectiveSurface")
@@ -88,7 +84,7 @@ public class LaserReflective : MonoBehaviour
                     lr.SetPosition(vertexCounter - 3, Vector3.MoveTowards(hit.point, lastLaserPosition, 0.01f));
                     lr.SetPosition(vertexCounter - 2, hit.point);
                     lr.SetPosition(vertexCounter - 1, hit.point);
-                    lastLaserPosition = hit.point - (laserDirection);
+                    lastLaserPosition = hit.point - (laserDirection*0.1f);
                     laserDirection = Vector3.Reflect(laserDirection, hit.normal);
                 }
                 else

@@ -3,6 +3,7 @@ using System.Collections;
 
 public class RotateLaser : MonoBehaviour
 {
+    [Header("Rotational Velocity of Laser")]
     [SerializeField] private float rotateVelocity;
 
     private bool rotatable = false;

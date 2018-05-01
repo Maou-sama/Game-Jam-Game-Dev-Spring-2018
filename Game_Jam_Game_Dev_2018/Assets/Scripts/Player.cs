@@ -8,66 +8,35 @@ public class Player : MonoBehaviour
 {
     private Rigidbody2D myRigidbody;
     private Rigidbody2D blockRigidBody = null;
+    private Animator anim;
 
     [SerializeField] private float xSpeed;
     [SerializeField] private float pushForce;
 
     private bool readyToPush = false;
 
-    //public Transform firepoint;
-    //public GameObject pProjectile;
-    //public int sliderPass;
-    //public Slider selfHealth;
-
     // Use this for initialization
     void Start()
     {
+        anim = GetComponent<Animator>();
         myRigidbody = GetComponent<Rigidbody2D>();
-        GameManager.Instance.pHealth = 50;
-        //sliderPass = GameManager.Instance.pHealth;
-        foreach (string str in Input.GetJoystickNames())
-        {
-            Debug.Log(str);
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        // Debug.Log(myRigidbody.velocity.y);
-
-        //selfHealth.value = sliderPass;
-
-        if (GameManager.Instance.pHealth == 0)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
     }
 
     void FixedUpdate()
     {
-        //        if (Input.GetKey(KeyCode.RightArrow))
-        //        {
-        //           myRigidbody.velocity = new Vector2(xSpeed, myRigidbody.velocity.y);
-        //            
-        //        }
-        //
-        //       if (Input.GetKey(KeyCode.LeftArrow)) 
-        //           {
-
-        //            myRigidbody.velocity = new Vector2(-xSpeed, myRigidbody.velocity.y);
-
-        //            } 
-        //        else
-        //      {
-        //            myRigidbody.velocity = new Vector2(0, myRigidbody.velocity.y);
-
-        //    }
-
-
         //Basic Movement for player using Rigidbody Velocity
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
+
+        if(moveHorizontal != 0 || moveVertical != 0)
+        {
+            anim.SetBool("Moving", true);
+        }
+
+        else
+        {
+            anim.SetBool("Moving", false);
+        }
 
         transform.Translate(new Vector2(moveHorizontal, moveVertical) * xSpeed);
 
@@ -108,11 +77,6 @@ public class Player : MonoBehaviour
         {
             myRigidbody.velocity /= 2;
         }
-      //  if (Input.GetKey(KeyCode.Space))
-        //{   //Creates a projectile object (from inspector specified prefab at an inspector specified location)
-          //  Instantiate(pProjectile, firepoint.position, firepoint.rotation);
-
-       /// }
 
     }
 
@@ -121,9 +85,9 @@ public class Player : MonoBehaviour
         rb2d.velocity = direction * pushForce;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Block")
+        if (collision.gameObject.tag == "ReflectiveSurface")
         {
             Debug.Log("Touch Block");
             readyToPush = true;
@@ -131,9 +95,9 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Block")
+        if (collision.gameObject.tag == "ReflectiveSurface")
         {
             Debug.Log("Untouch Block");
             readyToPush = false;

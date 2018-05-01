@@ -8,6 +8,7 @@ TagManager:
   - ReflectiveSurface
   - Block
   - Wall
+  - Concrete
   layers:
   - Default
   - TransparentFX
