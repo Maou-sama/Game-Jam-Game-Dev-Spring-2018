@@ -7,8 +7,6 @@ TagManager:
   - Obstacles
   - ReflectiveSurface
   - Block
-  - IceSurface
-  - NormalSurface
   - Wall
   layers:
   - Default
@@ -19,7 +17,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - LaserDetectable
   - 
   - 
   - 

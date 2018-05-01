@@ -14,11 +14,6 @@ public class Block : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
-        {
-            rb2d.velocity = collision.gameObject.GetComponent<Rigidbody2D>().velocity * (collision.gameObject.GetComponent<Rigidbody2D>().mass / rb2d.mass);
-        }
-
         if(collision.gameObject.tag == "Wall")
         {
             rb2d.velocity = Vector2.zero;

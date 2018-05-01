@@ -13,6 +13,7 @@ public class LaserReflective : MonoBehaviour
     [SerializeField] private ParticleSystem ps2;
 
     [Header("Laser's Properties")]
+    [SerializeField] private int maxReflectionTime;
     [SerializeField] private float timeOnOff;
     [SerializeField] private bool alwaysOn;
 
@@ -58,18 +59,18 @@ public class LaserReflective : MonoBehaviour
     //If the raycast hit player then player die
     void DrawLaser()
     {
-        int laserLimit = 80;
+        int laserLimit = maxReflectionTime;
         int laserReflected = 1;
         int vertexCounter = 1;
         bool loopActive = true;
         Vector2 laserDirection = transform.up;
-        Vector2 lastLaserPosiiton = transform.position;
+        Vector2 lastLaserPosition = transform.position;
 
         lr.positionCount = 1;
         lr.SetPosition(0, transform.position);
 
         while (loopActive) {
-            RaycastHit2D hit = Physics2D.Raycast(lastLaserPosiiton, laserDirection, Mathf.Infinity, layerToDetect);
+            RaycastHit2D hit = Physics2D.Raycast(lastLaserPosition, laserDirection, Mathf.Infinity, layerToDetect);
 
             /*if (hit.collider.tag == "Player")
             {
@@ -79,15 +80,16 @@ public class LaserReflective : MonoBehaviour
             {
                 if (hit.collider.tag == "ReflectiveSurface")
                 {
-                    Debug.Log("Bounce");
+                    //Debug.Log("Bounce");
+                    Debug.DrawLine(lastLaserPosition, hit.point);
                     laserReflected++;
                     vertexCounter += 3;
                     lr.positionCount = vertexCounter;
-                    lr.SetPosition(vertexCounter - 3, Vector3.MoveTowards(hit.point, lastLaserPosiiton, 0.01f));
+                    lr.SetPosition(vertexCounter - 3, Vector3.MoveTowards(hit.point, lastLaserPosition, 0.01f));
                     lr.SetPosition(vertexCounter - 2, hit.point);
                     lr.SetPosition(vertexCounter - 1, hit.point);
-                    lastLaserPosiiton = hit.point;
-                    laserDirection = Vector2.Reflect(laserDirection, hit.normal);
+                    lastLaserPosition = hit.point - (laserDirection);
+                    laserDirection = Vector3.Reflect(laserDirection, hit.normal);
                 }
                 else
                 {
@@ -103,7 +105,7 @@ public class LaserReflective : MonoBehaviour
                 laserReflected++;
                 vertexCounter++;
                 lr.positionCount = vertexCounter;
-                lr.SetPosition(vertexCounter - 1, lastLaserPosiiton + (laserDirection.normalized * 100));
+                lr.SetPosition(vertexCounter - 1, lastLaserPosition + (laserDirection.normalized * 100));
 
                 loopActive = false;
             }
