@@ -23,8 +23,10 @@ public class Block : MonoBehaviour
         {
             rb2d.velocity = Vector2.zero;
         }
-
-        Vector3 currentPos = transform.position;
-        transform.position = new Vector3(Mathf.Round(currentPos.x), Mathf.Round(currentPos.y));
+        if (collision.gameObject.tag != "BlockSwitch" || collision.gameObject.tag == "LaserSwitch")
+        {
+            Vector3 currentPos = transform.position;
+            transform.position = new Vector3(Mathf.Round(currentPos.x), Mathf.Round(currentPos.y));
+        }
     }
 }

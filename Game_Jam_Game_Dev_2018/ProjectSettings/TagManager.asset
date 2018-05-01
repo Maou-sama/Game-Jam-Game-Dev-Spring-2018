@@ -9,6 +9,8 @@ TagManager:
   - Block
   - Wall
   - Concrete
+  - BlockSwitch
+  - LaserSwitch
   layers:
   - Default
   - TransparentFX
