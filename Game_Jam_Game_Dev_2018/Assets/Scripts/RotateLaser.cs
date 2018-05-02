@@ -15,13 +15,25 @@ public class RotateLaser : MonoBehaviour
             if (Input.GetKey(KeyCode.U))
             {
                 Debug.Log("Rotate Left");
-                transform.Rotate(transform.forward, rotateVelocity);
+                if (Input.GetKey(KeyCode.LeftShift)){
+                    transform.Rotate(transform.forward, rotateVelocity * 10);
+                }
+                else {
+                    transform.Rotate(transform.forward, rotateVelocity);
+                }
             }
 
             else if (Input.GetKey(KeyCode.O))
             {
                 Debug.Log("Rotate Right");
-                transform.Rotate(transform.forward, -rotateVelocity);
+                if (Input.GetKey(KeyCode.LeftShift))
+                {
+                    transform.Rotate(transform.forward, -rotateVelocity * 10);
+                }
+                else
+                {
+                    transform.Rotate(transform.forward, -rotateVelocity);
+                }
             }
         }
     }

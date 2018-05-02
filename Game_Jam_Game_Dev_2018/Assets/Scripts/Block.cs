@@ -9,6 +9,9 @@ public class Block : MonoBehaviour
     public AudioClip BlockCollision;
     public AudioClip WallCollision;
 
+    [SerializeField] private float shakeMagnitude;
+    [SerializeField] private float shakeDuration;
+
     // Use this for initialization
     void Start()
     {
@@ -21,13 +24,14 @@ public class Block : MonoBehaviour
         {
             Debug.Log("Touched Wall");
             rb2d.velocity = Vector2.zero;
+            Camera.main.GetComponent<ShakeScreen>().Screenshake(shakeDuration, shakeMagnitude);
             CollisionNoise.PlayOneShot(WallCollision);
-            
         }
        
         if(collision.gameObject.tag == "ReflectiveSurface")
         {
             rb2d.velocity = Vector2.zero;
+            Camera.main.GetComponent<ShakeScreen>().Screenshake(shakeDuration, shakeMagnitude);
             CollisionNoise.PlayOneShot(BlockCollision);
         }
         if (collision.gameObject.tag != "BlockSwitch" || collision.gameObject.tag == "LaserSwitch")

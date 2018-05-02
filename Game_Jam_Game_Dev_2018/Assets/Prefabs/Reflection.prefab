@@ -156,7 +156,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -184,6 +184,8 @@ MonoBehaviour:
   CollisionNoise: {fileID: 82639499757473958}
   BlockCollision: {fileID: 8300000, guid: fb8519ac4d9f23d4fb3a6e5eab541619, type: 3}
   WallCollision: {fileID: 8300000, guid: 0fd60553f4fd5ee4198f0afe8a620617, type: 3}
+  shakeMagnitude: 0.1
+  shakeDuration: 0.4
 --- !u!212 &212395390252097310
 SpriteRenderer:
   m_ObjectHideFlags: 1
