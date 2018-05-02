@@ -26,6 +26,7 @@ public class Block : MonoBehaviour
             rb2d.velocity = Vector2.zero;
             Camera.main.GetComponent<ShakeScreen>().Screenshake(shakeDuration, shakeMagnitude);
             CollisionNoise.PlayOneShot(WallCollision);
+            
         }
        
         if(collision.gameObject.tag == "ReflectiveSurface")
