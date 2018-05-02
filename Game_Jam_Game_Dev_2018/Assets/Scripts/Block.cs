@@ -6,7 +6,7 @@ public class Block : MonoBehaviour
     private Rigidbody2D rb2d;
     public bool BlockWinLocal;
     public AudioSource CollisionNoise;
-    public AudioClip PlayerCollision;
+    public AudioClip BlockCollision;
     public AudioClip WallCollision;
 
     // Use this for initialization
@@ -28,6 +28,7 @@ public class Block : MonoBehaviour
         if(collision.gameObject.tag == "ReflectiveSurface")
         {
             rb2d.velocity = Vector2.zero;
+            CollisionNoise.PlayOneShot(BlockCollision);
         }
         if (collision.gameObject.tag != "BlockSwitch" || collision.gameObject.tag == "LaserSwitch")
         {
