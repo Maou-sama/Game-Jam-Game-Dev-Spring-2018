@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//This is a side scrolling 2d player movement
+//No purpose in this game
 public class Movement : MonoBehaviour
 {
 
