@@ -26,6 +26,11 @@ public class GameManager : MonoBehaviour {
     public float pXSpeed { get; set; }
     public bool PlayerSpotted { get; set; }
     public int pHealth { get; set; }
+    public int Level1BlocksPlaced { get; set; }
+    public bool Level1Win{ get; set; }
+    public bool Level2Win { get; set; }
+    public bool Level3Win { get; set; }
+    public bool PuzzleSolved { get; set; }
 
     void Awake()
     {

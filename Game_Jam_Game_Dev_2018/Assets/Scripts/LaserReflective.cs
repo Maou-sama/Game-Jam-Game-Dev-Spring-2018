@@ -74,6 +74,12 @@ public class LaserReflective : MonoBehaviour
 
             if (hit)
             {
+                if (hit.collider.tag == "LaserSwitch")
+                {
+                    GameManager.Instance.PuzzleSolved = true;
+                    Debug.Log("PuzzleSolved");
+                }
+
                 if (hit.collider.tag == "ReflectiveSurface")
                 {
                     //Debug.Log("Bounce");
@@ -87,6 +93,7 @@ public class LaserReflective : MonoBehaviour
                     lastLaserPosition = hit.point - (laserDirection*0.1f);
                     laserDirection = Vector3.Reflect(laserDirection, hit.normal);
                 }
+               
                 else
                 {
                     vertexCounter++;

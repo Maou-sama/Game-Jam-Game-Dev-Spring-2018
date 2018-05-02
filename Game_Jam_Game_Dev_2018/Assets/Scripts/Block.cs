@@ -4,6 +4,10 @@ using System.Collections;
 public class Block : MonoBehaviour
 {
     private Rigidbody2D rb2d;
+    public bool BlockWinLocal;
+    public AudioSource CollisionNoise;
+    public AudioClip PlayerCollision;
+    public AudioClip WallCollision;
 
     // Use this for initialization
     void Start()
@@ -17,8 +21,10 @@ public class Block : MonoBehaviour
         {
             Debug.Log("Touched Wall");
             rb2d.velocity = Vector2.zero;
+            CollisionNoise.PlayOneShot(WallCollision);
+            
         }
-
+       
         if(collision.gameObject.tag == "ReflectiveSurface")
         {
             rb2d.velocity = Vector2.zero;
@@ -28,5 +34,14 @@ public class Block : MonoBehaviour
             Vector3 currentPos = transform.position;
             transform.position = new Vector3(Mathf.Round(currentPos.x), Mathf.Round(currentPos.y));
         }
+        if(collision.gameObject.tag == "BlockSwitch" )
+        {
+            GameManager.Instance.Level1BlocksPlaced = (GameManager.Instance.Level1BlocksPlaced + 1);
+            Debug.Log(GameManager.Instance.Level1BlocksPlaced);
+            BlockWinLocal = true;
+            
+
+        }
+
     }
 }
