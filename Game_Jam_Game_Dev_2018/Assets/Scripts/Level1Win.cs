@@ -15,7 +15,14 @@ public class Level1Win : MonoBehaviour {
 	void Update () {
         if (GameManager.Instance.Level1BlocksPlaced > 1)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            StartCoroutine(SceneTransition());
         }
 	}
+
+    private IEnumerator SceneTransition()
+    {
+        float fadeTime = GameObject.FindGameObjectWithTag("GameManager").GetComponent<Fading>().BeginFade(1);
+        yield return new WaitForSeconds(fadeTime);
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+    }
 }

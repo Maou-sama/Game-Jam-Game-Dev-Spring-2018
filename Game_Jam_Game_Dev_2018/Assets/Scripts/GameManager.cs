@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour {
                 go.AddComponent<GameManager>();
             }
             return _instance;
+            //DontDestroyOnLoad(this.gameObject);
         }
 
     }
